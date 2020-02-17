@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="about">
     <mt-header title="标题过长会隐藏后面的内容啊哈哈哈哈">
       <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
@@ -39,6 +39,6 @@ export default {
   width: 10rem;
   height: 5rem;
   text-align: center;
-  font-size: 0.213333rem;
+  font-size: .213333rem;
 }
 </style>

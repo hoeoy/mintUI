@@ -1,68 +1,50 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+/* Router Modules */
+import businessRouter from './modules/business'
+import personRouter from './modules/person'
+import governmentRouter from './modules/government'
+
 Vue.use(Router)
 
-/* Router Modules */
-// import businessRouter from './modules/business'
-// import personRouter from './modules/person'
-// import govermentRouter from './modules/goverment'
-
-/**
- * Note: sub-menu only appear when route children.length >= 1
- * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
- *
- * hidden: true                   if set true, item will not show in the sidebar(default is false)
- * alwaysShow: true               if set true, will always show the root menu
- *                                if not set alwaysShow, when item has more than one children route,
- *                                it will becomes nested mode, otherwise not show the root menu
- * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
- * name:'router-name'             the name is used by <keep-alive> (must set!!!)
- * meta : {
-    roles: ['admin','editor']    control the page roles (you can set multiple roles)
-    title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'             the icon show in the sidebar
-    noCache: true                if set true, the page will no be cached(default is false)
-    affix: true                  if set true, the tag will affix in the tags-view
-    breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
-    activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
-  }
- */
-
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- */
-export const constantRoutes = [
-    {
-
-    }
-]
-
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-
-export const asyncRoutes = [
-    {
-
-    },
-]
-
-const createRouter = () => new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
-})
-
-const router = createRouter()
-
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
-export function resetRouter() {
-    const newRouter = createRouter()
-    router.matcher = newRouter.matcher // reset router
-}
+const router = new Router({
+    routes:[
+        // ...businessRouter,   // 企业
+        // ...personRouter,   // 个人
+        // ...governmentRouter,  // 政府
+        {
+            path: '/',
+            name: 'home',
+            component: () => import(/* webpackChunkName: 'about' */ '../views/Home.vue')
+        },
+        {
+            path: '/about',
+            name: 'about',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: 'about' */ '../views/About.vue')
+        },
+        {
+            path: '/login/person',
+            name: '/login/person',
+            component: () => import(/* webpackChunkName: 'about' */ '../views/login/Person.vue')
+        },
+        {
+            path: '/login/government',
+            name: '/login/government',
+            component: () => import(/* webpackChunkName: 'about' */ '../views/login/Government.vue')
+        }
+    ]
+});
+// router.beforeEach((to, from, next) => {
+//     //全局异常处理
+//   alert("asfdd")
+// });
+//
+// router.afterEach(() => {
+//   NProgress.done() // finish progress bar
+// })
 
 export default router
