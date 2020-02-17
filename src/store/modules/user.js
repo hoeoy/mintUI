@@ -1,5 +1,5 @@
 import { SET_AUTHOR_INFO, SET_USER_LIST } from '../types';
-import { fetchList } from '../../api/user';
+import { fetchList } from '../../api/person';
 
 const state = {
   author: 'DK',
