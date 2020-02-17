@@ -30,7 +30,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ### 其他
-https://github.com/spiroo/mintUI
 
 ```
 export PATH=/Applications/calibre.app/Contents/MacOS:$PATH
