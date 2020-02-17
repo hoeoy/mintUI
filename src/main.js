@@ -2,9 +2,11 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store/index';
-import './mint-ui/index.js';
+import MintUI from 'mint-ui'
 
 import '@/icons'; // icon
+
+Vue.use(MintUI)
 
 Vue.config.productionTip = false;
 
